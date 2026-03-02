@@ -26,9 +26,9 @@ Built with a minimal interface and powerful AI integration, Vector aims to reduc
 - **Frontend:** React / Next.js
 - **Editor Engine:** Monaco Editor
 - **Backend:** Node.js / Express
-- **AI Integration:** OpenAI API
-- **Database:** MongoDB / PostgreSQL
-- **Styling:** SCSS / Tailwind CSS
+- **AI Integration:** Ai.sdk, 
+- **Database:** Convex
+- **Styling:** Tailwind CSS
 
 ---
 
