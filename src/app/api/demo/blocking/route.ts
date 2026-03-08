@@ -1,6 +1,9 @@
 // POST = in function defination
 // localhost:3000/api/demo/blocking
 
+// this is the controller, UI can tirgger this code.
+// this code should trigger inngest background job fn
+
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 
