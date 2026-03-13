@@ -11,6 +11,11 @@ export async function POST() {
   const response = await generateText({
     model: google("gemini-2.5-flash"),
     prompt: "generate something to read.",
+    experimental_telemetry: {
+      isEnabled: true,
+      recordInputs: true,
+      recordOutputs: true,
+    },
   });
 
   return Response.json({ response });
