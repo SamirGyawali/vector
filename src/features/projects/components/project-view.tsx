@@ -11,7 +11,6 @@ import { ProjectsList } from "@/features/projects/components/projects-list";
 import { useCreateProject } from "../hooks/use-projects";
 import {
   uniqueNamesGenerator,
-  Config,
   adjectives,
   colors,
   animals,
@@ -48,7 +47,7 @@ export const ProjectsView = () => {
         open={commandDialogOpen}
         onOpenChange={setCommandDialogOpen}
       />
-      <div className="min-h-screen bg-slidebar flex flex-col items-center justify-center p-6 md:p-16">
+      <div className="min-h-screen bg-sidebar flex flex-col items-center justify-center p-6 md:p-16">
         <div className="w-full max-w-sm mx-auto flex flex-col gap-5 items-center">
           <div className="flex justify-between gap-4 w-full items-center">
             <div className="flex items-center gap-2 w-full group/logo">
