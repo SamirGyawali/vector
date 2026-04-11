@@ -1,7 +1,7 @@
 "use client";
 
-import { Id } from "../../../../convex/_generated/dataModel";
 import { Navbar } from "./navbar";
+import { Id } from "../../../../convex/_generated/dataModel";
 
 export const ProjectIdLayout = ({
   children,
