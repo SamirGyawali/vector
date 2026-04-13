@@ -61,7 +61,7 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
   };
 
   return (
-    <div className="flex justify-between items-center gap-x-2 p-2 bg-sidebar border-b border-b">
+    <div className="flex justify-between items-center gap-x-2 p-2 bg-sidebar border-b">
       <div className="flex items-center gap-x-2">
         <Breadcrumb>
           <BreadcrumbList>
