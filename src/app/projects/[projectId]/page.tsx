@@ -1,5 +1,5 @@
-import { ProjectIdView } from "@/features/projects/components/project-id-view";
 import React from "react";
+import { ProjectIdView } from "@/features/projects/components/project-id-view";
 import { Id } from "../../../../convex/_generated/dataModel";
 
 const ProjectIdPage = async ({

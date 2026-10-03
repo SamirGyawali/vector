@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
+import { Allotment } from "allotment";
+import { FileExplorer } from "./file-explorer";
 
 const Tab = ({
   label,
@@ -27,6 +29,11 @@ const Tab = ({
   );
 };
 
+const MIN_SIDEBAR_WIDTH = 200;
+const MAX_SIDEBAR_WIDTH = 800;
+const DEFAULT_SIDEBAR_WIDTH = 400;
+const DEFAULT_MAIN_SIZE = 1000;
+
 export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [isActiveView, setActiveView] = useState<"editor" | "preview">(
     "editor",
@@ -35,18 +42,18 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
     <div className="h-full flex flex-col">
       <nav className="h-[35px] flex items-center bg-sidebar border-b">
         <Tab
-          label="Preview"
+          label="Code"
           isActive={isActiveView === "editor"}
           onClick={() => setActiveView("editor")}
         />
         <Tab
-          label="Code"
+          label="Preview"
           isActive={isActiveView === "preview"}
           onClick={() => setActiveView("preview")}
         />
         <div className="flex-1 flex justify-end h-full">
           <div className="flex items-center gap-2 h-full px-3 cursor-pointer text-muted-foreground border-r hover:bg-accent/30">
-            <FaGithub className="size-3.5"/>
+            <FaGithub className="size-3.5" />
             <span className="text-sm">Export</span>
           </div>
         </div>
@@ -58,7 +65,19 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
             isActiveView === "editor" ? "visible" : "invisible",
           )}
         >
-          <div>Editor projectid: {projectId}</div>
+          <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
+            <Allotment.Pane
+            snap
+            minSize={MIN_SIDEBAR_WIDTH}
+            maxSize={MAX_SIDEBAR_WIDTH}
+            preferredSize={DEFAULT_SIDEBAR_WIDTH}
+            >
+              <FileExplorer projectId={projectId}/>
+            </Allotment.Pane>
+            <Allotment.Pane>
+              <p>Editor view</p>
+            </Allotment.Pane>
+          </Allotment>
         </div>
         <div
           className={cn(
