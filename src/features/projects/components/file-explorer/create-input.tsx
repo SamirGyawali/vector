@@ -18,7 +18,7 @@ export const CreateInput = ({
   const cancelRef = useRef(false);
 
   const handleSubmit = () => {
-    if (cancelRef) return;
+    if (cancelRef.current) return;
 
     const trimmedValue = value.trim();
     if (trimmedValue) {
