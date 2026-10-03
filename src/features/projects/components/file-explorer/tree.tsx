@@ -7,12 +7,6 @@ import {
   useFolderContents,
   useRenameFile,
 } from "../../hooks/use-files";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
 import { TreeItemWrapper } from "./tree-item-wrapper";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
 import { ChevronRightIcon } from "lucide-react";
@@ -189,7 +183,7 @@ export const Tree = ({
     <>
       <TreeItemWrapper
         item={item}
-        isActive={true}
+        isActive={false}
         level={level}
         onClick={() => setIsOpen((value) => !value)}
         onDoubleClick={() => {}}

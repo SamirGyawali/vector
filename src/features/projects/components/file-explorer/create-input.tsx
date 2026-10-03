@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from "lucide-react";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getItemPadding } from "./constants";
 
 export const CreateInput = ({
@@ -15,8 +15,11 @@ export const CreateInput = ({
   onCancel: () => void;
 }) => {
   const [value, setValue] = useState("");
+  const cancelRef = useRef(false);
 
   const handleSubmit = () => {
+    if (cancelRef) return;
+
     const trimmedValue = value.trim();
     if (trimmedValue) {
       onSubmit(trimmedValue);
@@ -49,10 +52,13 @@ export const CreateInput = ({
         className="flex-1 bg-transparent text-sm outline-none focus:ring-1 focus:ring-inset focus:ring-ring"
         onBlur={handleSubmit}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && !e.nativeEvent.isComposing) { // second condition for japanese, chinese typing
+            e.preventDefault();
             handleSubmit();
           }
           if (e.key === "Escape") {
+            e.preventDefault();
+            cancelRef.current = true;
             onCancel();
           }
         }}

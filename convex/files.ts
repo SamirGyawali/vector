@@ -63,7 +63,7 @@ export const getFolderContents = query({
     const identity = await verifyAuth(ctx);
 
     const project = await ctx.db.get("projects", args.projectId);
-    
+
     if (!project) {
       throw new Error("Project not found");
     }
@@ -278,19 +278,18 @@ export const deleteFile = mutation({
         for (const child of children) {
           await deleteRecursively(child._id);
         }
-
-        // delete storage file if it exists
-        if (item.storageId) {
-          await ctx.storage.delete(item.storageId);
-        }
-
-        // delete the file/folder itself
-        await ctx.db.delete("files", fileId);
-
-        await ctx.db.patch("projects", file.projectId, {
-          updatedAt: Date.now(),
-        });
       }
+      
+      // delete storage file if it exists
+      if (item.storageId) {
+        await ctx.storage.delete(item.storageId);
+      }
+      // delete the file/folder itself
+      await ctx.db.delete("files", fileId);
+
+      await ctx.db.patch("projects", file.projectId, {
+        updatedAt: Date.now(),
+      });
     };
 
     await deleteRecursively(args.id);
